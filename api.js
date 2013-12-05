@@ -37,7 +37,7 @@ setInterval(function() {
         if (err && err.code === 'ENOENT') mkdirp.sync(outputFolder)
     });
     i++;
-}, 1000);
+}, 3000);
 
 can = canned('/canned', opts);
 

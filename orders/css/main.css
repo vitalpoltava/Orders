@@ -1,0 +1,99 @@
+html, body, #root, .container {
+    position: relative;
+    height: 100%;
+}
+
+.search_validation_error {
+    background-color: darkred;
+    padding-left: 5px;
+    color: white;
+    display:none;
+    width: 30em;
+    border: 1px solid white;
+}
+
+/* Main Content */
+
+#map-canvas {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.main_line {
+    border: 1px solid lightgray;
+    position: relative;
+    height: 100%;
+}
+
+.main_line .left, .main_line .right {
+    position: relative;
+    height: 100%;
+}
+
+.main_line .left {
+    background-color: honeydew;
+    border-right: 1px solid lightgray;
+    overflow-y: auto;
+}
+
+.main_line .right {
+    background-color: white;
+    padding: 0;
+    text-align: center;
+}
+
+.centered {
+    position: relative;
+    display: inline-block;
+    margin: 40% auto;
+}
+
+/* Pictures */
+
+.pics_progress {
+    padding: 10px;
+    background-color: darkcyan;
+    color: white;
+    text-align: center;
+    border: 1px solid white;
+    display: none;
+}
+
+.thumb_item {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.thumb_item img {
+    border: 1px solid white;
+    border-radius: 5px;
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+    filter: gray;
+    -webkit-filter: grayscale(1);
+}
+
+.thumb_item:hover {
+    box-shadow:inset 0 0 5px gray;
+    border-radius: 5px;
+}
+
+.thumb_item:hover img {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+    -webkit-filter: grayscale(0);
+}
+
+.thumb_item table {
+    width: 100%;
+}
+
+.td_pic {
+    vertical-align: middle;
+    padding-left: 5px;
+    width: 40%;
+}
+
+.td_addr {
+    vertical-align: middle;
+    padding-left: 7px;
+}
