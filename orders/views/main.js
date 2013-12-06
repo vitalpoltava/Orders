@@ -19,7 +19,7 @@ define(['underscore', 'backbone', 'jst!../templates/main.html', './mapView', './
         render: function() {
             this.$el.html(this.template(this.templateModel));
 
-            // loading sub-views
+            // applying sub-views
             mapView = new MapView({el: '.main_line .right', myEvents: myEvents, collection: orders});
             statView = new StatView({el: '.main_line .left', myEvents: myEvents, collection: orders});
 
