@@ -10,8 +10,7 @@ define(['underscore', 'backbone', 'jst!../templates/mapView.html', 'jst!../templ
         mapCenter: {lat: 51.179343, lng: 19.681091},
         bubble: bubble,
 
-        initialize: function(options) {
-            this.myEvents = options.myEvents;
+        initialize: function() {
             this.render();
         },
 
@@ -53,6 +52,7 @@ define(['underscore', 'backbone', 'jst!../templates/mapView.html', 'jst!../templ
                 })
             });
 
+            // show order details
             google.maps.event.addListener(marker, 'click', function() {
                 // this = marker
                 this.info.open(map, this);
@@ -61,6 +61,7 @@ define(['underscore', 'backbone', 'jst!../templates/mapView.html', 'jst!../templ
             this.markers.push(order.markerItem);
         },
 
+        // filter out records which already used to create a map marker
         filterMarkers: function(item) {
             var markerItem = item.geo_lat + ',' + item.geo_long;
             item.markerItem = markerItem;

@@ -1,7 +1,7 @@
 define(['underscore', 'backbone', 'jst!../templates/main.html', './mapView', './statView', '../collections/orders'],
     function(_, Backbone, template, MapView, StatView, Orders) {
 
-    var mapView, statView, myEvents, orders;
+    var mapView, statView, orders;
 
     return Backbone.View.extend({
         template: template,
@@ -10,7 +10,6 @@ define(['underscore', 'backbone', 'jst!../templates/main.html', './mapView', './
         timer: null,
 
         initialize: function() {
-            myEvents = _.extend({}, Backbone.Events);
             orders = new Orders();
             this.lookupOrders();
             this.render();
@@ -20,8 +19,8 @@ define(['underscore', 'backbone', 'jst!../templates/main.html', './mapView', './
             this.$el.html(this.template(this.templateModel));
 
             // applying sub-views
-            mapView = new MapView({el: '.main_line .right', myEvents: myEvents, collection: orders});
-            statView = new StatView({el: '.main_line .left', myEvents: myEvents, collection: orders});
+            mapView = new MapView({el: '.main_line .right', collection: orders});
+            statView = new StatView({el: '.main_line .left', collection: orders});
 
             return this;
         },

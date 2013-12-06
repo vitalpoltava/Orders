@@ -1,7 +1,7 @@
 define(['underscore', 'backbone', './oneStatItemView', 'jst!../templates/statView.html'],
     function(_, Backbone, OneStatItemView, template) {
 
-    // useful function for functional approach
+    // useful function for functional coding approach
     var truthy = function(item) {
         return item;
     };
@@ -10,8 +10,7 @@ define(['underscore', 'backbone', './oneStatItemView', 'jst!../templates/statVie
         template: template,
         templateModel: {},
 
-        initialize: function(options) {
-            this.myEvents = options.myEvents;
+        initialize: function() {
             this.render();
         },
 
@@ -19,11 +18,12 @@ define(['underscore', 'backbone', './oneStatItemView', 'jst!../templates/statVie
             this.$el.html(this.template(this.templateModel));
             this.$list = $('.stat_list');
 
-            // Renewing stat list
+            // Renewing stat list event
             this.collection.on('add', this.renewStat.bind(this))
             return this;
         },
 
+        // create list of most ordered foods
         renewStat: function() {
             var list = this.countOrders(this.collection.toJSON());
             this.$list.empty();
@@ -35,12 +35,13 @@ define(['underscore', 'backbone', './oneStatItemView', 'jst!../templates/statVie
             });
         },
 
+        // sort orders by food type
         countOrders: function(orders) {
+            var res = [];
             var stat = _.chain(orders)
                 .pluck('name')
                 .countBy(truthy)
                 .value();
-            var res = [];
 
             for (var key in stat) {
                 if (stat.hasOwnProperty(key) && key !== 'undefined') {
