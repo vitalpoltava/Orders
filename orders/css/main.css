@@ -3,15 +3,6 @@ html, body, #root, .container {
     height: 100%;
 }
 
-.search_validation_error {
-    background-color: darkred;
-    padding-left: 5px;
-    color: white;
-    display:none;
-    width: 30em;
-    border: 1px solid white;
-}
-
 /* Main Content */
 
 #map-canvas {
@@ -55,7 +46,7 @@ html, body, #root, .container {
     color: #a9a9a9;
 }
 
-.stat_item0{
+.stat_item0 {
     font-weight: bold;
     color: #d58512;
 }
