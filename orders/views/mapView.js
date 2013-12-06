@@ -1,5 +1,5 @@
-define(['underscore', 'backbone', 'jst!../templates/mapView.html'],
-    function(_, Backbone, template) {
+define(['underscore', 'backbone', 'jst!../templates/mapView.html', 'jst!../templates/bubble.html'],
+    function(_, Backbone, template, bubble) {
 
     var map;
 
@@ -7,6 +7,8 @@ define(['underscore', 'backbone', 'jst!../templates/mapView.html'],
         template: template,
         templateModel: {},
         markers: [],
+        mapCenter: {lat: 51.179343, lng: 19.681091},
+        bubble: bubble,
 
         initialize: function(options) {
             this.myEvents = options.myEvents;
@@ -15,7 +17,7 @@ define(['underscore', 'backbone', 'jst!../templates/mapView.html'],
 
         render: function() {
             this.$el.html(this.template(this.templateModel));
-            this.showGMap({lat: 51.179343, lng: 19.681091});
+            this.showGMap(this.mapCenter);
             return this;
         },
 
@@ -38,14 +40,25 @@ define(['underscore', 'backbone', 'jst!../templates/mapView.html'],
         },
 
         createMarker: function(order) {
+            if (!order.name) return;
             var myLatlng = new google.maps.LatLng(order.geo_lat, order.geo_long);
-            this.markers.push(order.markerItem);
-            new google.maps.Marker({
+            var marker = new google.maps.Marker({
                 position: myLatlng,
                 map: map,
                 animation: google.maps.Animation.DROP,
-                title:"Place of search..."
+                title:"Order! Click to see more...",
+                clickable: true,
+                info: new google.maps.InfoWindow({
+                    content: this.bubble(order)
+                })
             });
+
+            google.maps.event.addListener(marker, 'click', function() {
+                // this = marker
+                this.info.open(map, this);
+            });
+
+            this.markers.push(order.markerItem);
         },
 
         filterMarkers: function(item) {

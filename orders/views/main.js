@@ -26,6 +26,7 @@ define(['underscore', 'backbone', 'jst!../templates/main.html', './mapView', './
             return this;
         },
 
+        // reading orders data to collection
         lookupOrders: function() {
             if(typeof this.timer == "number") clearTimeout(this.timer);
             places.fetch();

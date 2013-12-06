@@ -26,18 +26,24 @@ function get_food_index() {
     	return winner;
 }
 
-var i = 0;
-setInterval(function() {
-    var name = food[get_food_index()], 
+var i = 0, timer;
+var generateOrders = function() {
+    clearInterval(timer)
+    var name = food[get_food_index()],
         geo_lat = rand_range(45, 52, 5), geo_long = rand_range(5, 30, 5),
         price = rand_range(1, 100);
-	obj = { id: i, name: name, geo_lat: geo_lat, geo_long: geo_long, price: price };
+    obj = { id: i, name: name, geo_lat: geo_lat, geo_long: geo_long, price: price };
     arr.push(obj);
     fs.writeFile(outputFolder + '/index.get.json', JSON.stringify(arr), function(err) {
-        if (err && err.code === 'ENOENT') mkdirp.sync(outputFolder)
+        if (err && err.code === 'ENOENT') mkdirp.sync(outputFolder);
+        else if (err) throw err;
+        i++;
+        timer = setTimeout(generateOrders, 2000);
     });
-    i++;
-}, 3000);
+};
+
+// start generating orders
+generateOrders();
 
 can = canned('/canned', opts);
 
