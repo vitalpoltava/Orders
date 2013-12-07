@@ -1,5 +1,6 @@
 define(['underscore', 'backbone', 'jst!../templates/main.html', './mapView', './statView', '../collections/orders'],
     function(_, Backbone, template, MapView, StatView, Orders) {
+    'use strict';
 
     var mapView, statView, orders;
 
@@ -27,7 +28,7 @@ define(['underscore', 'backbone', 'jst!../templates/main.html', './mapView', './
 
         // reading orders data to collection
         lookupOrders: function() {
-            if(typeof this.timer == "number") clearTimeout(this.timer);
+            if (typeof this.timer === "number") clearTimeout(this.timer);
             orders.fetch();
             this.timer = setTimeout(this.lookupOrders.bind(this), 1000);
         }

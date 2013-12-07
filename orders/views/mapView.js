@@ -1,5 +1,6 @@
 define(['underscore', 'backbone', 'jst!../templates/mapView.html', 'jst!../templates/bubble.html'],
     function(_, Backbone, template, bubble) {
+    'use strict';
 
     var map;
 

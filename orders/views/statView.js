@@ -1,5 +1,6 @@
 define(['underscore', 'backbone', './oneStatItemView', 'jst!../templates/statView.html'],
     function(_, Backbone, OneStatItemView, template) {
+    'use strict';
 
     // useful function for functional coding approach
     var truthy = function(item) {
