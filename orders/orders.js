@@ -1,4 +1,4 @@
 define(function(require) {
-    var App = require('./views/main');
+    var App = require('./views/mainView');
     return App;
 });
