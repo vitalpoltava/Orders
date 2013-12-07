@@ -20,7 +20,7 @@ define(['underscore', 'backbone', './oneStatItemView', 'jst!../templates/statVie
             this.$list = $('.stat_list');
 
             // Renewing stat list event
-            this.collection.on('add', this.renewStat.bind(this))
+            this.listenTo(this.collection, 'add', this.renewStat.bind(this));
             return this;
         },
 

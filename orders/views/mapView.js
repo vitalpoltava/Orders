@@ -31,7 +31,7 @@ define(['underscore', 'backbone', 'jst!../templates/mapView.html', 'jst!../templ
                 mapOptions);
 
             // adding markers when collection added
-            this.collection.on('add', this.createMarkers.bind(this))
+            this.listenTo(this.collection, 'add', this.createMarkers.bind(this));
         },
 
         createMarkers: function() {
