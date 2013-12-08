@@ -22,12 +22,13 @@ define(['underscore', 'backbone', './oneStatItemView', 'jst!../templates/statVie
         // create list of most ordered foods
         renewStatView: function() {
             this.$list.empty();
+            this.collection.countMostOrdered().forEach(this.renderOneStatLine);
+        },
 
-            this.collection.countMostOrdered().forEach(function(item, index) {
-                item.index = index;
-                var view = new OneStatItemView({el: '.stat_list'});
-                view.render(item);
-            });
+        renderOneStatLine: function(item, index) {
+            item.index = index;
+            var view = new OneStatItemView({el: '.stat_list'});
+            view.render(item);
         }
     });
 });
