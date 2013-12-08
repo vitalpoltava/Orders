@@ -26,8 +26,8 @@ define(['underscore', 'backbone', './oneStatItemView', 'jst!../templates/statVie
         },
 
         renderOneStatLine: function(item, index) {
-            item.index = index;
             var view = new OneStatItemView({el: '.stat_list'});
+            item.index = index;
             view.render(item);
         }
     });
