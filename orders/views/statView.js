@@ -2,11 +2,6 @@ define(['underscore', 'backbone', './oneStatItemView', 'jst!../templates/statVie
     function(_, Backbone, OneStatItemView, template) {
     'use strict';
 
-    // useful function for functional coding approach
-    var truthy = function(item) {
-        return item;
-    };
-
     return Backbone.View.extend({
         template: template,
         templateModel: {},
@@ -20,38 +15,19 @@ define(['underscore', 'backbone', './oneStatItemView', 'jst!../templates/statVie
             this.$list = $('.stat_list');
 
             // Renewing stat list event
-            this.listenTo(this.collection, 'add', this.renewStat.bind(this));
+            this.listenTo(this.collection, 'add', this.renewStatView.bind(this));
             return this;
         },
 
         // create list of most ordered foods
-        renewStat: function() {
-            var list = this.countOrders(this.collection.toJSON());
+        renewStatView: function() {
+            var list = this.collection.countMostOrdered();
             this.$list.empty();
 
             list.forEach(function(item, index) {
                 item.index = index;
                 var view = new OneStatItemView({el: '.stat_list'});
                 view.render(item);
-            });
-        },
-
-        // sort orders by food type
-        countOrders: function(orders) {
-            var res = [];
-            var stat = _.chain(orders)
-                .pluck('name')
-                .countBy(truthy)
-                .value();
-
-            for (var key in stat) {
-                if (stat.hasOwnProperty(key) && key !== 'undefined') {
-                    res.push({name:key, total: stat[key] >> 0});
-                }
-            }
-
-            return res.sort(function(a, b) {
-                return b.total - a.total;
             });
         }
     });
