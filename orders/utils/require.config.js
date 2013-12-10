@@ -1,5 +1,4 @@
 requirejs.config({
-    baseUrl: '../orders',
     paths: {
         jquery: './utils/jquery',
         underscore: './utils/underscore',

@@ -1,4 +1,4 @@
-define(['underscore', 'backbone', 'jst!../templates/main.html', './mapView', './statView', '../collections/orders'],
+define(['underscore', 'backbone', 'jst!../templates/main.html', './mapView.js', './statView.js', '../collections/orders.js'],
     function(_, Backbone, template, MapView, StatView, Orders) {
     'use strict';
 

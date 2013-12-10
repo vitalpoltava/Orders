@@ -7,7 +7,7 @@ To launch the application:
 
 * Run `npm install` to load dependencies
 * Run `node api.js`
-* Launch `./orders/index.html`
+* Launch `http://localhost:3000/`
 
 
 [Screenshot](https://docs.google.com/file/d/0B6NL_hzMVs83c0ZYNU9JMUdrcms/edit)

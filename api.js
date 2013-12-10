@@ -1,12 +1,8 @@
-var canned = require('canned')
-,   http = require('http')
-,   opts = { cors: true, logger: process.stdout };
-
 var fs = require('fs');
-var mkdirp = require('mkdirp');
-var obj = { "foo": "bar3" };
+var express = require('express');
+var app = module.exports = express();
+var obj = {};
 var arr = [];
-var outputFolder = './canned/orders';
 
 var food = ['Pizza', 'Burger','Asiatisch', 'Sushi', 'Indisch', 'Mediterran',
 'Orientalisch', 'Gourmet', 'International'];
@@ -34,18 +30,25 @@ function generateOrders() {
         price = rand_range(1, 100);
     obj = { id: i, name: name, geo_lat: geo_lat, geo_long: geo_long, price: price };
     arr.push(obj);
-    fs.writeFile(outputFolder + '/index.get.json', JSON.stringify(arr), function(err) {
-        if (err && err.code === 'ENOENT') mkdirp.sync(outputFolder);
-        else if (err) throw err;
-        i++;
-        timer = setTimeout(generateOrders, 2000);
-    });
+    i++;
+    timer = setTimeout(generateOrders, 2000);
 };
 
 // start generating orders
 generateOrders();
 
-can = canned('/canned', opts);
+// config stuff
+app.use(express.compress())
+app.use(express.favicon())
+app.use(express.cookieParser())
+app.use(express.bodyParser())
+app.use(express.methodOverride())
+app.use(app.router) // prioritize routes over public folder
+app.use(express.static(__dirname + '/orders'));
+
+app.get('/api/list.json', function(req, res){
+    res.send(JSON.stringify(arr));
+});
 
 console.log('Listening at 3000...')
-http.createServer(can).listen(3000);
+app.listen(3000);

@@ -1,5 +1,4 @@
-define(function(require) {
+require(['./views/mainView.js'], function(App) {
     'use strict';
-    var App = require('./views/mainView');
     new App();
 });

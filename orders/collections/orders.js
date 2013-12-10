@@ -1,4 +1,4 @@
-define(['underscore', 'backbone', '../models/order'], function(_, Backbone, Order) {
+define(['underscore', 'backbone', '../models/order.js'], function(_, Backbone, Order) {
     'use strict';
 
     // useful for functional coding approach
@@ -8,7 +8,7 @@ define(['underscore', 'backbone', '../models/order'], function(_, Backbone, Orde
 
     return Backbone.Collection.extend({
         model: Order,
-        url: 'http://localhost:3000/orders',
+        url: 'http://localhost:3000/api/list.json',
 
         countMostOrdered: function() {
             return this.countOrders(this.toJSON());
