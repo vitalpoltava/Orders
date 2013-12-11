@@ -38,11 +38,11 @@ function generateOrders() {
 generateOrders();
 
 // config stuff
-app.use(express.compress())
-app.use(express.favicon())
-app.use(express.cookieParser())
-app.use(express.bodyParser())
-app.use(app.router) // prioritize routes over public folder
+app.use(express.compress());
+app.use(express.favicon());
+app.use(express.cookieParser());
+app.use(express.bodyParser());
+app.use(app.router); // prioritize routes over public folder
 app.use(express.static(__dirname + '/orders'));
 
 app.get('/api/list.json', function(req, res){
