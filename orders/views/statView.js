@@ -1,6 +1,10 @@
-define(['underscore', 'backbone', './oneStatItemView', 'jst!../templates/statView.html'],
-    function(_, Backbone, OneStatItemView, template) {
+define(function(require) {
     'use strict';
+
+    var _ = require('underscore');
+    var Backbone = require('backbone');
+    var template = require('jst!../templates/statView.html');
+    var OneStatItemView = require('./oneStatItemView');
 
     return Backbone.View.extend({
         template: template,

@@ -1,8 +1,14 @@
-define(['underscore', 'backbone', 'jst!../templates/main.html', './mapView.js', './statView.js', '../collections/orders.js'],
-    function(_, Backbone, template, MapView, StatView, Orders) {
+define(function(require) {
     'use strict';
 
     var mapView, statView, orders;
+
+    var _ = require('underscore');
+    var Backbone = require('backbone');
+    var template = require('jst!../templates/main.html');
+    var MapView = require('./mapView');
+    var StatView = require('./statView');
+    var Orders = require('../collections/orders');
 
     return Backbone.View.extend({
         template: template,

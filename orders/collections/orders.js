@@ -1,5 +1,9 @@
-define(['underscore', 'backbone', '../models/order.js'], function(_, Backbone, Order) {
+define(function(require) {
     'use strict';
+
+    var _ = require('underscore');
+    var Backbone = require('backbone');
+    var Order = require('../models/order');
 
     // useful for functional coding approach
     var truthy = function(item) {

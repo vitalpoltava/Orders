@@ -42,7 +42,6 @@ app.use(express.compress())
 app.use(express.favicon())
 app.use(express.cookieParser())
 app.use(express.bodyParser())
-app.use(express.methodOverride())
 app.use(app.router) // prioritize routes over public folder
 app.use(express.static(__dirname + '/orders'));
 

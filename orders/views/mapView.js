@@ -1,8 +1,11 @@
-define(['underscore', 'backbone', 'jst!../templates/mapView.html', 'jst!../templates/bubble.html'],
-    function(_, Backbone, template, bubble) {
+define(function(require) {
     'use strict';
 
     var map;
+    var _ = require('underscore');
+    var Backbone = require('backbone');
+    var template = require('jst!../templates/mapView.html');
+    var bubble = require('jst!../templates/bubble.html');
 
     return Backbone.View.extend({
         template: template,
