@@ -24,7 +24,7 @@ function get_food_index() {
 
 var i = 0, timer;
 function generateOrders() {
-    clearInterval(timer)
+    clearTimeout(timer);
     var name = food[get_food_index()],
         geo_lat = rand_range(45, 52, 5), geo_long = rand_range(5, 30, 5),
         price = rand_range(1, 100);
